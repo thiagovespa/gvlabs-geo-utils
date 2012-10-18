@@ -13,7 +13,7 @@ public class GeoUtils {
 	 * Earth radius
 	 * http://en.wikipedia.org/wiki/Earth_radius
 	 */
-	public static int EARTH_RADIUS_KM = 6371; //*1000
+	private static int EARTH_RADIUS_KM = 6371; //*1000
 
 	/**
 	 * Distance between two geo coordinates
