@@ -8,7 +8,7 @@ import org.gvlabs.utils.geo.GeoType;
 
 
 /**
- * A class used to format a coordinate. Eg. 1.5 to 1º 30" 00' N or vice-versa 
+ * A class used to format a coordinate. Eg. 1.5 to 1&ordm; 30" 00' N or vice-versa 
  * 
  * @author Thiago Galbiatti Vespa
  * @version 1.0
