@@ -7,7 +7,7 @@ package org.gvlabs.utils.geo.util;
  * @author Thiago Galbiatti Vespa
  * @version 1.1
  */
-public class GeoUtils {
+public final class GeoUtils {
 
 	/**
 	 * Earth radius
