@@ -14,6 +14,8 @@ public class GeoUtils {
 	 * http://en.wikipedia.org/wiki/Earth_radius
 	 */
 	public static final int EARTH_RADIUS_KM = 6371; //*1000
+	
+	private GeoUtils() {} // Utility classes should not have a public or default constructor.
 
 	/**
 	 * Distance between two geo coordinates
