@@ -1,6 +1,5 @@
 package org.gvlabs.utils.geo.util;
 
-import org.gvlabs.utils.geo.GeoCoordinate;
 
 /**
  * Geo-coordinate operations
@@ -43,21 +42,6 @@ public class GeoUtils {
 				* Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
 				* Math.sin(secondLatToRad))
 				* EARTH_RADIUS_KM;
-	}
-
-	/**
-	 * Distance between two geo coordinates.
-	 * 
-	 * @param first
-	 *            First geo-coordinate
-	 * @param second
-	 *            Second geo-coordinate
-	 * @return Distance between two coordinates
-	 */
-	public static double geoDistanceInKm(GeoCoordinate first,
-			GeoCoordinate second) {
-		return geoDistanceInKm(first.getLatitude(), first.getLongitude(),
-				second.getLatitude(), second.getLongitude());
 	}
 
 }

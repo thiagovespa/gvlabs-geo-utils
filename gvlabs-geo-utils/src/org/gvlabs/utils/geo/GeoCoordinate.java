@@ -81,14 +81,18 @@ public class GeoCoordinate implements Serializable {
 	 * Distance in Km from a geo-coordinate
 	 * 
 	 * @param coordinate
-	 *            coordinate used to calculate the distance 
+	 *            coordinate used to calculate the distance
 	 * @return the distance between the two coordinates
 	 */
 	public double distanceInKm(GeoCoordinate coordinate) {
-		return GeoUtils.geoDistanceInKm(this, coordinate);
+		return GeoUtils.geoDistanceInKm(this.getLatitude(),
+				this.getLongitude(), coordinate.getLatitude(),
+				coordinate.getLongitude());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -103,24 +107,31 @@ public class GeoCoordinate implements Serializable {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		GeoCoordinate other = (GeoCoordinate) obj;
 		if (Double.doubleToLongBits(latitude) != Double
-				.doubleToLongBits(other.latitude))
+				.doubleToLongBits(other.latitude)) {
 			return false;
+		}
 		if (Double.doubleToLongBits(longitude) != Double
-				.doubleToLongBits(other.longitude))
+				.doubleToLongBits(other.longitude)) {
 			return false;
+		}
 		return true;
 	}
 
