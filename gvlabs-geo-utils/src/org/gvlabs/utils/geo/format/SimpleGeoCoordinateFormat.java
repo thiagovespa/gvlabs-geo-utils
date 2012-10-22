@@ -118,7 +118,6 @@ public class SimpleGeoCoordinateFormat extends Format {
 		if ("S".equals(position) || "W".equals(position)) {
 			degreeValue = degreeValue.negate();
 		}
-		// "1º 30\" 36' N"
 		pos.setIndex(source.length());
 		return degreeValue.doubleValue();
 	}
