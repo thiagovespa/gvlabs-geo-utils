@@ -101,7 +101,7 @@ public class SimpleGeoCoordinateFormat extends Format {
 	 */
 	@Override
 	public Object parseObject(String source, ParsePosition pos) {
-		BigDecimal degreeValue = new BigDecimal("0");
+		BigDecimal degreeValue = BigDecimal.ZERO;
 		Scanner s = new Scanner(source);
 		s.findInLine("(\\d+)\u00BA (\\d+)\" (\\d+)' ([N|S|E|W])");
 
