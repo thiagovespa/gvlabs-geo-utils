@@ -1,6 +1,7 @@
 package org.gvlabs.utils.geo.format;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.FieldPosition;
 import java.text.Format;
 import java.text.ParseException;
@@ -25,6 +26,7 @@ public class SimpleGeoCoordinateFormat extends Format {
 	private static final long serialVersionUID = 201210161409L;
 
 	private static final double SIXTH = 60.0;
+	private static final int PRECISION = 20;
 
 	private GeoType geoType;
 
@@ -104,16 +106,16 @@ public class SimpleGeoCoordinateFormat extends Format {
 		s.findInLine("(\\d+)\u00BA (\\d+)\" (\\d+)' ([N|S|E|W])");
 
 		MatchResult result = s.match();
-		int factor = 1;
+		BigDecimal factor = new BigDecimal(SIXTH);
 		
 		for (int i = 1; i < result.groupCount(); i++) {
-			degreeValue = degreeValue.add(new BigDecimal(Double.parseDouble(result.group(i))/factor));
-			factor*=60;
+			degreeValue = degreeValue.add(new BigDecimal(result.group(i))
+					.divide(factor.pow(i-1), PRECISION, RoundingMode.HALF_EVEN));
 		}
 		s.close();
 
 		String position = result.group(result.groupCount());
-		if("S".equals(position) || "W".equals(position)) {
+		if ("S".equals(position) || "W".equals(position)) {
 			degreeValue = degreeValue.negate();
 		}
 		// "1º 30\" 36' N"
@@ -133,6 +135,5 @@ public class SimpleGeoCoordinateFormat extends Format {
 	public Integer parse(String source) throws ParseException {
 		return (Integer) this.parseObject(source);
 	}
-
 
 }
