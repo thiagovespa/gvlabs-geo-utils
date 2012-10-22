@@ -117,7 +117,6 @@ public class SimpleGeoCoordinateFormat extends Format {
 			degreeValue = degreeValue.negate();
 		}
 		// "1º 30\" 36' N"
-		System.out.println(degreeValue.doubleValue());
 		pos.setIndex(source.length());
 		return degreeValue.doubleValue();
 	}
