@@ -64,12 +64,12 @@ public class SimpleGeoCoordinateFormat extends Format {
 			minutes = (int) minutesD;
 			seconds = (int) Math.round((minutesD - minutes) * SIXTH);
 			// round adjustments
-			if (seconds >= 60) {
-				seconds -= 60;
+			if (seconds >= SIXTH) {
+				seconds -= SIXTH;
 				minutes++;
 			}
-			if (minutes >= 60) {
-				minutes -= 60;
+			if (minutes >= SIXTH) {
+				minutes -= SIXTH;
 				degree++;
 			}
 
