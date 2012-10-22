@@ -1,8 +1,12 @@
 package org.gvlabs.utils.geo.format;
 
+import java.math.BigDecimal;
 import java.text.FieldPosition;
 import java.text.Format;
+import java.text.ParseException;
 import java.text.ParsePosition;
+import java.util.Scanner;
+import java.util.regex.MatchResult;
 
 import org.gvlabs.utils.geo.GeoType;
 
@@ -56,8 +60,7 @@ public class SimpleGeoCoordinateFormat extends Format {
 			degree = (int) value;
 			double minutesD = (value - degree) * SIXTH;
 			minutes = (int) minutesD;
-			seconds = (int) Math.round((minutesD - minutes)
-					* SIXTH);
+			seconds = (int) Math.round((minutesD - minutes) * SIXTH);
 			// round adjustments
 			if (seconds >= 60) {
 				seconds -= 60;
@@ -69,7 +72,7 @@ public class SimpleGeoCoordinateFormat extends Format {
 			}
 
 			toAppendTo.append(degree).append("\u00BA ").append(minutes)
-					.append("\" ").append(seconds).append("\' ");
+					.append("\" ").append(seconds).append("' ");
 			if (GeoType.LATITUDE.equals(geoType)) {
 				if (isNegative) {
 					toAppendTo.append("S");
@@ -96,9 +99,41 @@ public class SimpleGeoCoordinateFormat extends Format {
 	 */
 	@Override
 	public Object parseObject(String source, ParsePosition pos) {
-		double degreeValue = 0.0;
+		BigDecimal degreeValue = new BigDecimal(0.0);
+		Scanner s = new Scanner(source);
+		s.findInLine("(\\d+)\u00BA (\\d+)\" (\\d+)' ([N|S|E|W])");
 
-		return degreeValue;
+		MatchResult result = s.match();
+		int factor = 1;
+		
+		for (int i = 1; i < result.groupCount(); i++) {
+			degreeValue = degreeValue.add(new BigDecimal(Double.parseDouble(result.group(i))/factor));
+			factor*=60;
+		}
+		s.close();
+
+		String position = result.group(result.groupCount());
+		if("S".equals(position) || "W".equals(position)) {
+			degreeValue = degreeValue.negate();
+		}
+		// "1º 30\" 36' N"
+		System.out.println(degreeValue.doubleValue());
+		pos.setIndex(source.length());
+		return degreeValue.doubleValue();
 	}
+
+	/**
+	 * Parse a latitude or longitude to a Integer
+	 * 
+	 * @param source
+	 *            string to parse
+	 * @return parsed latitude or longitude
+	 * @throws ParseException
+	 *             when
+	 */
+	public Integer parse(String source) throws ParseException {
+		return (Integer) this.parseObject(source);
+	}
+
 
 }
