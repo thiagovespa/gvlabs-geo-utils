@@ -45,10 +45,10 @@ public class SimpleGeoCoordinateFormatTest {
 	 */
 	@Test
 	public void testFormatObjectStringBufferFieldPosition() {
-		assertEquals("1º 30\" 36' N", formatterLat.format(1.51));
-		assertEquals("45º 55\" 12' W", formatterLong.format(-45.92));
-		assertEquals("12º 36\" 54' S", formatterLat.format(-12.615));
-		assertEquals("78º 12\" 36' E", formatterLong.format(78.21));
+		assertEquals("1\u00BA 30\" 36' N", formatterLat.format(1.51));
+		assertEquals("45\u00BA 55\" 12' W", formatterLong.format(-45.92));
+		assertEquals("12\u00BA 36\" 54' S", formatterLat.format(-12.615));
+		assertEquals("78\u00BA 12\" 36' E", formatterLong.format(78.21));
 	}
 
 	/**
@@ -57,10 +57,10 @@ public class SimpleGeoCoordinateFormatTest {
 	 */
 	@Test
 	public void testParseObjectStringParsePosition() throws ParseException {
-		assertEquals(1.51, formatterLat.parseObject("1º 30\" 36' N"));
-		assertEquals(-45.92, formatterLong.parseObject("45º 55\" 12' W"));
-		assertEquals(-12.615, formatterLat.parseObject("12º 36\" 54' S"));
-		assertEquals(78.21, formatterLong.parseObject("78º 12\" 36' E"));
+		assertEquals(1.51, formatterLat.parseObject("1\u00BA 30\" 36' N"));
+		assertEquals(-45.92, formatterLong.parseObject("45\u00BA 55\" 12' W"));
+		assertEquals(-12.615, formatterLat.parseObject("12\u00BA 36\" 54' S"));
+		assertEquals(78.21, formatterLong.parseObject("78\u00BA 12\" 36' E"));
 	}
 
 }
