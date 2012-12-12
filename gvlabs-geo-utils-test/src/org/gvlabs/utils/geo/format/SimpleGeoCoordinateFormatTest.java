@@ -39,7 +39,7 @@ public class SimpleGeoCoordinateFormatTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+   
 	/**
 	 * Test method for {@link org.gvlabs.utils.geo.format.SimpleGeoCoordinateFormat#format(java.lang.Object, java.lang.StringBuffer, java.text.FieldPosition)}.
 	 */
